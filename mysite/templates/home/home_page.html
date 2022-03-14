@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div>
+        {{self.home_title}}
+    </div>
+    {% with settings.color.ColorSetting as color %}
+    <div style = "background-color: {{color.color}};
+    width: 200px;
+    height: 200px;">
+
+    </div>
+    <a href="{{page.url}}">page</a>
+
+    {% endwith %}
+
+    {% for page in p %}
+        <a href="{{page.url}}">{{page.title}}</a>
+    {% endfor %}
+{% endblock %}

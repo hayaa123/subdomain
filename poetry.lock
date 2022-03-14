@@ -342,6 +342,20 @@ docs = ["pyenchant (>=3.1.1,<4)", "sphinxcontrib-spelling (>=5.4.0,<6)", "Sphinx
 testing = ["python-dateutil (>=2.7)", "pytz (>=2014.7)", "elasticsearch (>=5.0,<6.0)", "Jinja2 (>=2.11,<3.0)", "boto3 (>=1.16,<1.17)", "freezegun (>=0.3.8)", "openpyxl (>=2.6.4)", "Unidecode (>=0.04.14,<2.0)", "azure-mgmt-cdn (>=5.1,<6.0)", "azure-mgmt-frontdoor (>=0.3,<0.4)", "coverage (>=3.7.0)", "flake8 (>=3.6.0)", "isort (==5.6.4)", "flake8-blind-except (==0.1.1)", "flake8-print (==2.0.2)", "doc8 (==0.8.1)", "jinjalint (>=0.5)", "docutils (==0.15)", "polib (>=1.1,<2.0)"]
 
 [[package]]
+name = "wagtail-color-panel"
+version = "1.3.1"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+wagtail = ">=2.13"
+
+[package.extras]
+test = ["pytest-django", "wagtail-factories", "pytest"]
+
+[[package]]
 name = "webencodings"
 version = "0.5.1"
 description = "Character encoding aliases for legacy web content"
@@ -392,7 +406,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "073814f99a2d742844e499cf61f1edf310807cd97abd93b60ab2c55f88a8e618"
+content-hash = "1d59e5cd23ac9c9d6062ba70f359284ef77bf5e8105ebf7af533c3704f5be677"
 
 [metadata.files]
 anyascii = [
@@ -540,6 +554,10 @@ urllib3 = [
 wagtail = [
     {file = "wagtail-2.16.1-py3-none-any.whl", hash = "sha256:129bb91c422e5c2b3603ebc67e9c392541cb564e55a5b864881905ca246a2c4e"},
     {file = "wagtail-2.16.1.tar.gz", hash = "sha256:53dbd62a93da97c4ef6982652a103ab9be5bfe03f34cf5bc796c5d716b9020e8"},
+]
+wagtail-color-panel = [
+    {file = "wagtail-color-panel-1.3.1.tar.gz", hash = "sha256:961e6e1f01ae9a134176520e690b065f6cb8585df81ca572d73c0acaf3747461"},
+    {file = "wagtail_color_panel-1.3.1-py3-none-any.whl", hash = "sha256:f6701415f2d03a663cd50b277aa82bfcac80cc344317860ffdcd029c81b77dd5"},
 ]
 webencodings = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
