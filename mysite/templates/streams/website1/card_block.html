@@ -1,0 +1,42 @@
+{% load wagtailimages_tags %}
+
+<section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>{{self.title}}</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
+      </div>
+
+      <div class=" container" data-aos="fade-up" data-aos-delay="200">
+          <div class="row">
+          
+          {% for card in self.cards %}
+          <div class="col portfolio-item filter-web">
+          <div class="portfolio-wrap">
+            {% image card.image fill-300x200 as img %}
+            <img src="{{img.url}}" class="img-fluid" alt="{{img.alt}}">
+            <div class="portfolio-info">
+              <h4>{{card.title}}</h4>
+              <p>{{card.text}}</p>
+              <div class="portfolio-links">
+                {% if card.button_page %}
+                <a href="{{card.button_page.url}}" title="More Details"><i class="bx bx-link"></i></a>
+              {%  elif card.button_url %}
+                <a href="{{card.button_url}}" title="More Details"><i class="bx bx-link"></i></a>
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+

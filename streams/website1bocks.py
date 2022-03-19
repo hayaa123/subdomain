@@ -3,6 +3,7 @@ Streamfield live in here
 """
 
 from wagtail.core import blocks
+from wagtail.images.blocks import ImageChooserBlock
 
 class TitleAndTextBlock(blocks.StructBlock):
     """
@@ -35,16 +36,35 @@ class CTABlock(blocks.StructBlock):
         label = "Call to action "
 
 
-class LinkStructValue(blocks.StructValue):
-    """
-    additional logic for our urls
-    """
-    def url(self):
-        button_page = self.get('button_page')
-        button_url = self.get('button_url')
-        if button_page:
-            return button_page.url
-        elif button_url:
-            return button_url
+class RichTextBlock(blocks.RichTextBlock):
+    """rich text block"""
 
-        return None
+    class Meta:
+        template = 'streams/website1/richtext_block.html'
+        lable = 'Full-RichText'
+        icon = "doc-full"
+
+
+
+class CardBlock(blocks.StructBlock):
+    """card block using listblock"""
+    title = blocks.CharBlock(
+        required=True,
+        help_text='add your title here :)'
+    )
+    cards = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ("image", ImageChooserBlock(required=True)),
+                ("title", blocks.CharBlock(required=True, max_length=40)),
+                ("text", blocks.TextBlock(required=True, max_length=200)),
+                ("button_page", blocks.PageChooserBlock(required=False, help_text="If the button page above is selected, it will be used first.")),
+                ("button_url", blocks.URLBlock(required=False, )),
+            ]
+        )
+    )
+
+    class Meta: 
+        template = "streams/website1/card_block.html"
+        icon = "placeholder"
+        label = "Staff Cards"

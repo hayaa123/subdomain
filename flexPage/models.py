@@ -1,53 +1,42 @@
+from re import template
 from django.db import models
 
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import FieldPanel ,StreamFieldPanel
-from streams import blocks ,website1bocks
 from wagtail.core.fields import StreamField
+from streams import blocks, website1bocks
+# Create your models here.
 
-class HomePage(Page):
-    template = "home/home_page.html"
+class FlexPage(Page):
+    template ='flexPage/flex_page.html'
     content = StreamField(
         [
             ("title_and_text", blocks.TitleAndTextBlock()),
             ("cta",blocks.CTABlock()),
             ("card",blocks.CardBlock()),
+            ("richtext",blocks.RichTextBlock()),
         ],
         null=True,
         blank=True
         )
-        
-
-
+    
     content_panels = Page.content_panels +[
         StreamFieldPanel("content")
        ]
 
-
-    # def get_context(self, request, *args, **kwargs):
-    #     context= super().get_context(request, *args, **kwargs)
-    #     # if else statments 
-    #     context['p'] = HomePage.objects.all()
-    #     return context
-
-# all have the same template ???!! 
-class HomePageWebsite1(Page):
-    template = "home/home_page_website1.html"
-
+class FlexPageWebsite1(Page):
+    template ='flexPage/flex_page.html'
     content = StreamField(
         [
             ("title_and_text", website1bocks.TitleAndTextBlock()),
             ("cta",website1bocks.CTABlock()),
             ("card",website1bocks.CardBlock()),
-
+            ("richtext",website1bocks.RichTextBlock()),
         ],
         null=True,
         blank=True
-    )
+        )
+    
     content_panels = Page.content_panels +[
         StreamFieldPanel("content")
        ]
-
-
-class HomePageWebsite2(HomePage):
-    template = "home/home_page_website2.html"

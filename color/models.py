@@ -10,8 +10,12 @@ from wagtail_color_panel.edit_handlers import NativeColorPanel
 
 @register_setting
 class ColorSetting(BaseSetting):
-    color = ColorField(default='#000000')
+    color1 = ColorField(default='#0E3EDA')
+    color2 = ColorField(default='#F473B9')
+    color3 = ColorField(default='#FFBDE6')
 
     content_panels = Page.content_panels +[
-                NativeColorPanel('color'),
+                NativeColorPanel('color1'),
+                NativeColorPanel('color2'),
+                NativeColorPanel('color3'),
        ]
