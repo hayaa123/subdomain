@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'search',
     'socialMedia',
     'color',
+    'streams',
     #3rd party aps 
     'wagtail_color_panel',
 
