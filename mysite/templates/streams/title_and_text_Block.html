@@ -1,4 +1,27 @@
+<!-- {% with settings.color.ColorSetting as color %} -->
 <div>
-    <h1>{{self.title}}</h1>
+    <h1 style = "color: {{color.color1}};">
+        {{self.title}}
+    </h1>
     <p>{{self.text}}</p>
 </div>
+
+
+
+<!-- <div style = "background-color: {{color.color1}};
+width: 200px;
+height: 200px;">
+
+</div>
+
+<div style = "background-color: {{color.color2}};
+width: 200px;
+height: 200px;">
+
+</div>
+<div style = "background-color: {{color.color3}};
+width: 200px;
+height: 200px;">
+
+</div>
+{% endwith %} -->

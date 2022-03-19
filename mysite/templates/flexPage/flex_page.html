@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block content %}
+
+<h1>{{self.title}}</h1>
+{% with settings.color.ColorSetting as color %}
+
+<div style = "background-color: {{color.color1}};
+width: 200px;
+height: 200px;">
+
+</div>
+
+<div style = "background-color: {{color.color2}};
+width: 200px;
+height: 200px;">
+
+</div>
+<div style = "background-color: {{color.color3}};
+width: 200px;
+height: 200px;">
+
+</div>
+{% endwith %}
+
+
+{% for block in self.content %}
+
+{% include_block block %}
+
+{% endfor %}
+{% endblock %}
