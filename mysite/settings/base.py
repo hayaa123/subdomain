@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'color',
     'streams',
     'flexPage',
+    'stylingAdmin',
     #3rd party aps 
     'wagtail_color_panel',
 

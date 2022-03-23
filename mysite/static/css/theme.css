@@ -1,0 +1,15 @@
+:root {
+    --color-primary: #aa2e8e;
+    /* --color-primary-lighter : none;
+    --color-primary-light: none; */
+    --color-primary-darker: blue;
+    /* for add child page button
+
+    /* --color-primary-dark: blue; */ 
+
+    --color-input-focus: rgb(204, 41, 0);
+    --color-input-focus-border: #1ff0ff;
+}
+:tap-content{
+    background-color: yellow;
+}
