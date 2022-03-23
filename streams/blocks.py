@@ -35,6 +35,42 @@ class CTABlock(blocks.StructBlock):
         icon = "placeholder"
         label = "Call to action "
 
+
+
+class RichTextBlock(blocks.RichTextBlock):
+    """rich text block"""
+
+    class Meta:
+        template = 'streams/richtext_block.html'
+        lable = 'Full-RichText'
+        icon = "doc-full"
+
+
+
+class CardBlock(blocks.StructBlock):
+    """card block using listblock"""
+    title = blocks.CharBlock(
+        required=True,
+        help_text='add your title here :)'
+    )
+    cards = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ("image", ImageChooserBlock(required=True)),
+                ("title", blocks.CharBlock(required=True, max_length=40)),
+                ("text", blocks.TextBlock(required=True, max_length=200)),
+                ("button_page", blocks.PageChooserBlock(required=False, help_text="If the button page above is selected, it will be used first.")),
+                ("button_url", blocks.URLBlock(required=False, )),
+            ]
+        )
+    )
+
+    class Meta: 
+        template = "streams/card_block.html"
+        icon = "placeholder"
+        label = "Staff Cards"
+
+
 # class LinkStructValue(blocks.StructValue):
 #     """
 #     additional logic for our urls

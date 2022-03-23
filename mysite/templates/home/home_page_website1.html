@@ -1,10 +1,20 @@
-{% extends url %}
+{% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block content %}
-{{url}}
-<a href="{{ url }}_base.html"> Test </a>
-{% for block in self.content %}
+{% block title %}
+    {% if self.title %}{{ self.title }}{% endif %}
+{% endblock %}
+{% block title_suffix %}
+    {% wagtail_site as current_site %}
+    <!-- {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %} -->
+{% endblock %}
+
+{% block header %}
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center" >
+      <h1 class="logo me-auto"  ><a href="/">{{self.title}}<span>.</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>-->
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -40,32 +50,16 @@
     </div>
   </header>
 {% endblock %}
-<!-- ------------------content block ------------------ -->
+
 {% block content %}
 
-    <!-- {% with settings.color.ColorSetting as color %}
 
-    <div style="background-color: {{color.color1}};
-    width: 200px;
-    height: 200px;">
 
-    </div>
 
-    <div style="background-color: {{color.color2}};
-    width: 200px;
-    height: 200px;">
 
-    </div>
-    <div style="background-color: {{color.color3}};
-    width: 200px;
-    height: 200px;">
+{% for block in self.content %}
 
-    </div>
-    {% endwith %} -->
+{% include_block block %}
 
-    {% for block in self.content %}
-
-        {% include_block block %}
-
-    {% endfor %}
+{% endfor %}
 {% endblock %}

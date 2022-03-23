@@ -16,7 +16,8 @@ class HomePage(Page):
     content = StreamField(
         [
             ("title_and_text", blocks.TitleAndTextBlock()),
-            ("cta",blocks.CTABlock())
+            ("cta",blocks.CTABlock()),
+            ("card",blocks.CardBlock()),
         ],
         null=True,
         blank=True
@@ -28,7 +29,6 @@ class HomePage(Page):
 
 
     content_panels = Page.content_panels +[
-        FieldPanel("home_title"),
         StreamFieldPanel("content")
        ]
     # promote_panels = []

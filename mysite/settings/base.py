@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'socialMedia',
     'color',
     'streams',
+    'flexPage',
     #3rd party aps 
     'wagtail_color_panel',
 
