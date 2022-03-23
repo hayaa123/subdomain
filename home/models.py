@@ -1,12 +1,18 @@
 from django.db import models
 
 from wagtail.core.models import Page
-from wagtail.admin.edit_handlers import FieldPanel ,StreamFieldPanel
-from streams import blocks ,website1bocks
+from wagtail.admin.edit_handlers import (
+    FieldPanel ,
+    StreamFieldPanel,
+    ObjectList,
+    MultiFieldPanel,
+    TabbedInterface)
+from streams import blocks
 from wagtail.core.fields import StreamField
 
 class HomePage(Page):
     template = "home/home_page.html"
+    home_title = models.CharField(verbose_name="home_title",max_length=100,null=True)
     content = StreamField(
         [
             ("title_and_text", blocks.TitleAndTextBlock()),
@@ -16,38 +22,37 @@ class HomePage(Page):
         null=True,
         blank=True
         )
-        
+    def get_context(self, request, *args, **kwargs):
+            context =  super().get_context(request, *args, **kwargs)
+            context['url']=f"{self.url_path[1:-1]}_base.html"
+            return context
 
 
     content_panels = Page.content_panels +[
         StreamFieldPanel("content")
        ]
+    # promote_panels = []
+    # settings_panels = []
+    sidebar_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('home_title')
+            ],heading='text'
+        )
+    ]
 
-
-    # def get_context(self, request, *args, **kwargs):
-    #     context= super().get_context(request, *args, **kwargs)
-    #     # if else statments 
-    #     context['p'] = HomePage.objects.all()
-    #     return context
-
-# all have the same template ???!! 
-class HomePageWebsite1(Page):
-    template = "home/home_page_website1.html"
-
-    content = StreamField(
+    edit_handler = TabbedInterface(
         [
-            ("title_and_text", website1bocks.TitleAndTextBlock()),
-            ("cta",website1bocks.CTABlock()),
-            ("card",website1bocks.CardBlock()),
-
-        ],
-        null=True,
-        blank=True
+            ObjectList(content_panels,heading= "content"),
+            ObjectList(Page.promote_panels,heading='Promotion'),
+            ObjectList(Page.settings_panels,heading='settings'),
+            ObjectList(sidebar_panels,heading='Side Panels'), 
+        ]
     )
-    content_panels = Page.content_panels +[
-        StreamFieldPanel("content")
-       ]
 
 
-class HomePageWebsite2(HomePage):
-    template = "home/home_page_website2.html"
+HomePage._meta.get_field("title").verbose_name = 'new verbose name' 
+HomePage._meta.get_field("title").help_text = 'abrar want to change this'
+HomePage._meta.get_field('title').default = "HOME"
+# HomePage._meta.get_field('slug').d efault = HomePage.home_title.
+

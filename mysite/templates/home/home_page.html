@@ -1,25 +1,10 @@
-{% extends "base.html" %}
+{% extends url %}
 {% load wagtailcore_tags wagtailimages_tags %}
-<!-- ------------------title block ------------------ -->
-{% block title %}
-    {% if page.title %}{{ page.title }}{% endif %}
-{% endblock %}
-{% block title_suffix %}
-    {% wagtail_site as current_site %}
-    {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
-{% endblock %}
-<!-- ------------------class name block ------------------ -->
 
-{% block body_class %} {{self.title}} {% endblock %}
-
-<!-- ------------------header block ------------------ -->
-
-{% block header %}
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center" >
-      <h1 class="logo me-auto"  ><a href="/">{{self.title}}<span>.</span></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt=""></a>-->
+{% block content %}
+{{url}}
+<a href="{{ url }}_base.html"> Test </a>
+{% for block in self.content %}
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
